@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "test",
+    "slug": "test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -33,7 +33,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "4c3ec14b-fd51-4eb7-b1b9-a76f527a04ea"
+        "projectId": "7697df7a-0ced-4b6b-b4eb-de71c214a91c"
       }
     }
   }
