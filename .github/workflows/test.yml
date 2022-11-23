@@ -49,11 +49,11 @@ jobs:
 
       - name: 👷 Build Android app
         if: ${{ matrix.os != 'macos-latest' }}
-        run: eas build --local --platform android
+        run: eas build --non-interactive --local --platform android
         working-directory: apps/my-app
 
       - name: 👷 Build iOS app
         if: ${{ matrix.os == 'macos-latest' }}
-        run: eas build --local --platform ios
+        run: eas build --non-interactive --local --platform ios
         working-directory: apps/my-app
 
