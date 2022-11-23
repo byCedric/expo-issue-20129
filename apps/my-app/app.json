@@ -19,7 +19,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.izakfilmalter.myapp"
+      "bundleIdentifier": "com.bycedric.expoissue20192"
     },
     "android": {
       "adaptiveIcon": {
