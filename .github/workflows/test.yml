@@ -1,9 +1,12 @@
-name: Run tests
 on:
   push:
     branches: [main]
   pull_request:
     types: [opened, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -31,13 +34,26 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
+      - name: 🏗 Java for Android
+        if: ${{ matrix.os != 'macos-latest' }}
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
       - name: 🏗 Setup Corepack for Yarn
-        run: corepack enable
+        run: corepack enable && yarn --version
 
       - name: 📦 Install dependencies
         run: yarn install
 
-      - name: 👷 Build app
-        run: eas build --platform android --local
+      - name: 👷 Build Android app
+        if: ${{ matrix.os != 'macos-latest' }}
+        run: eas build --local --platform android
+        working-directory: apps/my-app
+
+      - name: 👷 Build iOS app
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: eas build --local --platform ios
         working-directory: apps/my-app
 
